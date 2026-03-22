@@ -240,7 +240,7 @@ document.addEventListener("DOMContentLoaded", () => {
         
         if (cart.length === 0) {
             cartItemsContainer.innerHTML = '<p class="empty-cart-msg">Your cart is empty.</p>';
-            cartTotalPriceEl.textContent = '$0.00';
+            cartTotalPriceEl.textContent = '₹0';
             return;
         }
 
@@ -252,14 +252,14 @@ document.addEventListener("DOMContentLoaded", () => {
                     <img src="${item.img}" alt="${item.name}" class="cart-item-img">
                     <div class="cart-item-info">
                         <h4 class="cart-item-title">${item.name}</h4>
-                        <div class="cart-item-price">$${item.price.toFixed(2)} x ${item.quantity}</div>
+                        <div class="cart-item-price">₹${item.price.toLocaleString('en-IN')} x ${item.quantity}</div>
                         <span class="cart-item-remove hover-target" data-index="${index}">Remove</span>
                     </div>
                 </div>
             `;
         }).join('');
 
-        cartTotalPriceEl.textContent = `$${total.toFixed(2)}`;
+        cartTotalPriceEl.textContent = `₹${total.toLocaleString('en-IN')}`;
 
         document.querySelectorAll('.cart-item-remove').forEach(btn => {
             btn.addEventListener('click', (e) => {
