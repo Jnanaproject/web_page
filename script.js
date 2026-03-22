@@ -95,19 +95,15 @@ document.addEventListener("DOMContentLoaded", () => {
     if (zoomBox && zoomedLens && zoomResult) {
         let isZooming = false;
         
-        zoomBox.addEventListener("click", () => {
+        // Triggers zoom immediately just by moving cursor there
+        zoomBox.addEventListener("mouseenter", () => {
             if (window.innerWidth >= 900) {
-                isZooming = !isZooming;
-                if(isZooming) {
-                    zoomedLens.style.display = "block";
-                    zoomResult.style.display = "block";
-                    zoomResult.style.backgroundImage = `url('${currentLargeImageSrc}')`;
-                    // Setting an initial background size approximation before mousemove completes it
-                    zoomResult.style.backgroundSize = `${mainImage.clientWidth * 2}px ${mainImage.clientHeight * 2}px`;
-                } else {
-                    zoomedLens.style.display = "none";
-                    zoomResult.style.display = "none";
-                }
+                isZooming = true;
+                zoomedLens.style.display = "block";
+                zoomResult.style.display = "block";
+                zoomResult.style.backgroundImage = `url('${currentLargeImageSrc}')`;
+                // Initial approximation
+                zoomResult.style.backgroundSize = `${mainImage.clientWidth * 2}px ${mainImage.clientHeight * 2}px`;
             }
         });
 
