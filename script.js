@@ -93,22 +93,32 @@ document.addEventListener("DOMContentLoaded", () => {
     const zoomResult = document.getElementById("zoom-result");
 
     if (zoomBox && zoomedLens && zoomResult) {
-        zoomBox.addEventListener("mouseenter", () => {
+        let isZooming = false;
+        
+        zoomBox.addEventListener("click", () => {
             if (window.innerWidth >= 900) {
-                zoomedLens.style.display = "block";
-                zoomResult.style.display = "block";
-                zoomResult.style.backgroundImage = `url('${currentLargeImageSrc}')`;
-                zoomResult.style.backgroundSize = `${mainImage.clientWidth * 2.5}px ${mainImage.clientHeight * 2.5}px`;
+                isZooming = !isZooming;
+                if(isZooming) {
+                    zoomedLens.style.display = "block";
+                    zoomResult.style.display = "block";
+                    zoomResult.style.backgroundImage = `url('${currentLargeImageSrc}')`;
+                    // Setting an initial background size approximation before mousemove completes it
+                    zoomResult.style.backgroundSize = `${mainImage.clientWidth * 2}px ${mainImage.clientHeight * 2}px`;
+                } else {
+                    zoomedLens.style.display = "none";
+                    zoomResult.style.display = "none";
+                }
             }
         });
 
         zoomBox.addEventListener("mouseleave", () => {
+            isZooming = false;
             zoomedLens.style.display = "none";
             zoomResult.style.display = "none";
         });
 
         zoomBox.addEventListener("mousemove", (e) => {
-            if (window.innerWidth < 900) return;
+            if (!isZooming || window.innerWidth < 900) return;
 
             const rect = mainImage.getBoundingClientRect();
             let x = e.clientX - rect.left;
