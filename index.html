@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SonicPro - Premium Tech Store</title>
+    <!-- Meta Description for SEO -->
+    <meta name="description" content="A fully responsive tech store featuring premium headphones, smartwatches, and more.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Innovative Page Loader -->
+    <div class="page-loader" id="page-loader">
+        <div class="loader-circle"></div>
+        <div class="loader-text">SonicPro</div>
+    </div>
+
+    <!-- Custom Cursor -->
+    <div class="custom-cursor" id="custom-cursor"></div>
+    <div class="custom-cursor-follower" id="custom-cursor-follower"></div>
+
+    <!-- Notification Toast -->
+    <div class="toast-notification" id="toast-notification">Item added to cart!</div>
+
+    <!-- Cart Overlay & Sidebar -->
+    <div class="cart-overlay" id="cart-overlay"></div>
+    <aside class="cart-sidebar" id="cart-sidebar">
+        <div class="cart-header">
+            <h2>Your Cart</h2>
+            <button class="close-cart hover-target" id="close-cart" aria-label="Close cart">&times;</button>
+        </div>
+        <div class="cart-items" id="cart-items">
+            <!-- Cart items will be rendered here via JS -->
+            <p class="empty-cart-msg">Your cart is empty.</p>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cart-total-price">$0.00</span>
+            </div>
+            <button class="btn btn-primary btn-large checkout-btn hover-target">Proceed to Checkout</button>
+        </div>
+    </aside>
+
+    <!-- Top Announcement Bar -->
+    <div class="announcement-bar">
+        <span>Free express shipping on all orders over $150. Shop now!</span>
+    </div>
+
+    <!-- Sticky Header -->
+    <header class="sticky-header" id="sticky-header">
+        <div class="sticky-container">
+            <div class="sticky-logo hover-target">SonicPro</div>
+            <!-- Dynamic Mini Product Info in Sticky Nav -->
+            <div class="sticky-product-info">
+                <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=150&q=80" alt="Thumbnail" class="sticky-thumb">
+                <div class="sticky-details-wrap">
+                    <span class="product-name">SonicPro Wireless</span>
+                    <span class="product-price">$299.00</span>
+                </div>
+                <button class="btn btn-primary btn-small add-to-cart-btn hover-target" data-id="p1" data-name="SonicPro Headphones" data-price="299.00" data-img="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=300&q=80">Add to Cart</button>
+            </div>
+            <div class="nav-actions">
+                <button class="theme-toggle hover-target" aria-label="Toggle Dark Mode">🌓</button>
+                <div class="cart-icon cart-trigger hover-target">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+                    <span class="cart-badge">0</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Navigation Bar -->
+    <nav class="main-nav" id="main-nav">
+        <div class="nav-container">
+            <div class="logo hover-target">SonicPro</div>
+            <ul class="nav-links">
+                <li><a href="#featured" class="hover-target">Featured</a></li>
+                <li><a href="#more-products" class="hover-target">Shop</a></li>
+                <li><a href="#anatomy" class="hover-target">Anatomy</a></li>
+                <li><a href="#reviews" class="hover-target">Reviews</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button class="theme-toggle hover-target" aria-label="Toggle Dark Mode">🌓</button>
+                <div class="search-icon hover-target" aria-label="Search" title="Search">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                </div>
+                <div class="cart-icon cart-trigger hover-target">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+                    <span class="cart-badge">0</span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Breadcrumbs -->
+    <div class="container breadcrumbs" style="position: relative; z-index: 5;">
+        <a href="#" class="hover-target">Home</a> &rsaquo; <a href="#" class="hover-target">Audio</a> &rsaquo; <a href="#" class="hover-target">Headphones</a> &rsaquo; <span>SonicPro Wireless</span>
+    </div>
+
+    <!-- Featured Product Section -->
+    <main class="product-section" id="featured">
+        <div class="container product-container">
+            
+            <!-- Left Column: Image Gallery -->
+            <div class="product-gallery parallax-layer">
+                <!-- Social Sharing -->
+                <div class="social-share">
+                    <span>Share:</span>
+                    <a href="#" class="hover-target" aria-label="Share on Twitter"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a>
+                    <a href="#" class="hover-target" aria-label="Share on Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a>
+                </div>
+
+                <div class="main-image-container hover-target" id="main-image-container">
+                    <div class="zoom-box" id="zoom-box">
+                        <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=1200&q=80" 
+                             alt="Premium Wireless Headphones - Main Default" class="main-image" id="main-image">
+                        <div class="zoomed-image-lens" id="zoomed-lens"></div>
+                    </div>
+                </div>
+                <div class="zoom-result" id="zoom-result"></div>
+
+                <div class="thumbnail-list" id="thumbnail-list">
+                    <button class="thumbnail active hover-target">
+                        <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=300&q=80" data-large="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=1200&q=80" alt="Side View">
+                    </button>
+                    <button class="thumbnail hover-target">
+                        <img src="https://images.unsplash.com/photo-1546435770-a3e426fa99f5?auto=format&fit=crop&w=300&q=80" data-large="https://images.unsplash.com/photo-1546435770-a3e426fa99f5?auto=format&fit=crop&w=1200&q=80" alt="Angled">
+                    </button>
+                    <button class="thumbnail hover-target">
+                        <img src="https://images.unsplash.com/photo-1583394838336-acd977736f90?auto=format&fit=crop&w=300&q=80" data-large="https://images.unsplash.com/photo-1583394838336-acd977736f90?auto=format&fit=crop&w=1200&q=80" alt="Laying down">
+                    </button>
+                    <button class="thumbnail hover-target">
+                        <img src="https://images.unsplash.com/photo-1618366712010-f4ae9c647dcb?auto=format&fit=crop&w=300&q=80" data-large="https://images.unsplash.com/photo-1618366712010-f4ae9c647dcb?auto=format&fit=crop&w=1200&q=80" alt="Close up">
+                    </button>
+                </div>
+            </div>
+
+            <!-- Right Column: Product Details -->
+            <div class="product-details slide-in-right">
+                <div class="product-badges">
+                    <span class="badge new pulse">New Release</span>
+                    <span class="badge in-stock">In Stock</span>
+                </div>
+                
+                <h1 class="product-title">SonicPro Wireless Noise-Canceling Headphones</h1>
+                
+                <div class="product-rating scroll-to hover-target" data-target="reviews">
+                    <span class="stars">★★★★☆</span>
+                    <span class="reviews-count">(128 Reviews) - 4.8/5</span>
+                </div>
+                
+                <div class="product-pricing">
+                    <span class="current-price">$299.00</span>
+                    <span class="original-price">$349.00</span>
+                    <span class="save-tag">Save $50</span>
+                </div>
+                
+                <!-- Product Information Tabs -->
+                <div class="product-tabs">
+                    <div class="tab-headers">
+                        <button class="tab-btn active hover-target" data-tab="desc">Description</button>
+                        <button class="tab-btn hover-target" data-tab="tech">Tech Specs</button>
+                        <button class="tab-btn hover-target" data-tab="box">In the Box</button>
+                    </div>
+                    <div class="tab-content active" id="desc">
+                        Experience pure, high-fidelity audio with the SonicPro Wireless. Equipped with industry-leading Active Noise Cancellation and a sleek, ergonomic design, these headphones deliver an immersive soundscape.
+                    </div>
+                    <div class="tab-content" id="tech">
+                        <ul>
+                            <li><strong>Weight:</strong> 250g</li>
+                            <li><strong>Battery:</strong> 30 Hours Playback</li>
+                            <li><strong>Bluetooth:</strong> Version 5.2 Multi-point</li>
+                            <li><strong>Drivers:</strong> 40mm Custom Dynamic</li>
+                        </ul>
+                    </div>
+                    <div class="tab-content" id="box">
+                        <div class="box-grid">
+                            <img src="https://images.unsplash.com/photo-1614113489855-66422ad300a4?auto=format&fit=crop&w=100&q=80" alt="Case" title="Hard-shell case">
+                            <img src="https://images.unsplash.com/photo-1542282088-fe8426682b8f?auto=format&fit=crop&w=100&q=80" alt="Cable" title="USB-C Cable">
+                        </div>
+                        <ul style="margin-top: 10px;">
+                            <li>SonicPro Wireless Headphones</li>
+                            <li>Hard-shell carrying case</li>
+                            <li>USB-C Charging Cable</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="product-options">
+                    <h3 class="option-title">Select Color</h3>
+                    <div class="color-options">
+                        <button class="color-btn black active hover-target" title="Matte Black"></button>
+                        <button class="color-btn white hover-target" title="Pearl White"></button>
+                        <button class="color-btn blue hover-target" title="Midnight Blue"></button>
+                    </div>
+                </div>
+
+                <!-- Product Warranty -->
+                <div class="product-options">
+                    <h3 class="option-title">Coverage Options</h3>
+                    <div class="radio-group">
+                        <label class="radio-label active hover-target"><input type="radio" name="warranty" checked> 1-Year Standard (Included)</label>
+                        <label class="radio-label hover-target"><input type="radio" name="warranty"> 3-Year Protection Plan (+$49.00)</label>
+                    </div>
+                </div>
+
+                <div class="product-actions" id="main-product-actions">
+                    <div class="quantity-selector">
+                        <button class="qty-btn minus hover-target" aria-label="Decrease quantity">-</button>
+                        <input type="number" id="main-qty" value="1" min="1" class="qty-input" aria-label="Quantity">
+                        <button class="qty-btn plus hover-target" aria-label="Increase quantity">+</button>
+                    </div>
+                    <button class="btn btn-primary btn-large add-to-cart-btn cart-anime-trigger hover-target" data-id="p1" data-name="SonicPro Headphones" data-price="299.00" data-img="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=300&q=80">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 8px;"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+                        Add to Cart
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- NEW INNOVATION: Audio Anatomy Hotspots -->
+    <section class="spacer-section anatomy-section" id="anatomy">
+        <div class="container relative">
+            <h2 class="text-center">The Anatomy of Sound</h2>
+            <p class="text-center" style="max-width:600px; margin:0 auto; margin-bottom: 40px; color: var(--text-muted);">Explore the engineering inside the SonicPro Wireless.</p>
+            
+            <div class="hotspot-container">
+                <img src="https://images.unsplash.com/photo-1583394838336-acd977736f90?auto=format&fit=crop&w=1000&q=80" alt="Headphone Anatomy" class="anatomy-img">
+                
+                <!-- Hotspot 1 -->
+                <div class="hotspot" style="top: 30%; left: 35%;">
+                    <div class="hotspot-dot hover-target"></div>
+                    <div class="hotspot-tooltip">
+                        <strong>Memory Foam Earcups</strong>
+                        <p>Ultra-plush synthetic leather designed for all-day comfort.</p>
+                    </div>
+                </div>
+
+                <!-- Hotspot 2 -->
+                <div class="hotspot" style="top: 50%; left: 65%;">
+                    <div class="hotspot-dot hover-target"></div>
+                    <div class="hotspot-tooltip">
+                        <strong>40mm Custom Drivers</strong>
+                        <p>High-excursion dynamic drivers pushing brilliant highs and deep bass.</p>
+                    </div>
+                </div>
+
+                <!-- Hotspot 3 -->
+                <div class="hotspot" style="top: 20%; left: 50%;">
+                    <div class="hotspot-dot hover-target"></div>
+                    <div class="hotspot-tooltip">
+                        <strong>Stainless Steel Band</strong>
+                        <p>Lightweight, durable frame coated in an elegant matte finish.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- More Products Grid Feature -->
+    <section class="spacer-section bg-light" id="more-products">
+        <div class="container">
+            <h2 class="text-center">Frequently Bought Together</h2>
+            <div class="products-grid">
+                
+                <div class="product-card fade-up">
+                    <div class="card-img-container">
+                        <img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?auto=format&fit=crop&w=600&q=80" alt="Smart Watch" loading="lazy">
+                    </div>
+                    <div class="card-content">
+                        <h3>SonicWatch Series 3</h3>
+                        <p class="card-price">$199.00</p>
+                        <button class="btn btn-secondary btn-small card-btn add-to-cart-btn hover-target" data-id="p2" data-name="SonicWatch Series 3" data-price="199.00" data-img="https://images.unsplash.com/photo-1546868871-7041f2a55e12?auto=format&fit=crop&w=300&q=80">Quick Add</button>
+                    </div>
+                </div>
+
+                <div class="product-card fade-up" style="transition-delay: 100ms;">
+                    <div class="card-img-container">
+                        <img src="https://images.unsplash.com/photo-1606220588913-b3aacb4d2f46?auto=format&fit=crop&w=600&q=80" alt="Wireless Earbuds" loading="lazy">
+                    </div>
+                    <div class="card-content">
+                        <h3>SonicBuds Pro</h3>
+                        <p class="card-price">$149.00</p>
+                        <button class="btn btn-secondary btn-small card-btn add-to-cart-btn hover-target" data-id="p3" data-name="SonicBuds Pro" data-price="149.00" data-img="https://images.unsplash.com/photo-1606220588913-b3aacb4d2f46?auto=format&fit=crop&w=300&q=80">Quick Add</button>
+                    </div>
+                </div>
+
+                <div class="product-card fade-up" style="transition-delay: 200ms;">
+                    <div class="card-img-container">
+                        <img src="https://images.unsplash.com/photo-1543512214-318c7553f230?auto=format&fit=crop&w=600&q=80" alt="Bluetooth Speaker" loading="lazy">
+                    </div>
+                    <div class="card-content">
+                        <h3>SonicBlast Portable</h3>
+                        <p class="card-price">$89.00</p>
+                        <button class="btn btn-secondary btn-small card-btn add-to-cart-btn hover-target" data-id="p4" data-name="SonicBlast Portable" data-price="89.00" data-img="https://images.unsplash.com/photo-1543512214-318c7553f230?auto=format&fit=crop&w=300&q=80">Quick Add</button>
+                    </div>
+                </div>
+                
+                 <div class="product-card fade-up" style="transition-delay: 300ms;">
+                    <div class="card-img-container">
+                        <img src="https://images.unsplash.com/photo-1587826703554-47fdcfad1305?auto=format&fit=crop&w=600&q=80" alt="Gaming Headset" loading="lazy">
+                    </div>
+                    <div class="card-content">
+                        <h3>SonicGamer RGB</h3>
+                        <p class="card-price">$129.00</p>
+                        <button class="btn btn-secondary btn-small card-btn add-to-cart-btn hover-target" data-id="p5" data-name="SonicGamer RGB" data-price="129.00" data-img="https://images.unsplash.com/photo-1587826703554-47fdcfad1305?auto=format&fit=crop&w=300&q=80">Quick Add</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Customer Reviews Section (With Added Avatar Images) -->
+    <section class="spacer-section" id="reviews">
+        <div class="container">
+            <h2 class="text-center">Customer Reviews</h2>
+            <div class="reviews-grid">
+                
+                <div class="review-card fade-up">
+                    <div class="review-header">
+                        <div class="review-user-info">
+                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=150&q=80" alt="Sarah J" class="review-avatar">
+                            <div>
+                                <span class="review-author">Sarah J.</span>
+                                <div class="review-rating">★★★★★</div>
+                            </div>
+                        </div>
+                        <span class="review-date">Oct 12, 2026</span>
+                    </div>
+                    <h4>Best headphones I've ever used.</h4>
+                    <p>The noise cancellation is insane. I use these on my daily commute and it completely blocks out the train noise. Highly recommend the Matte Black color!</p>
+                </div>
+
+                <div class="review-card fade-up" style="transition-delay: 100ms;">
+                    <div class="review-header">
+                        <div class="review-user-info">
+                            <img src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?auto=format&fit=crop&w=150&q=80" alt="Michael T" class="review-avatar">
+                            <div>
+                                <span class="review-author">Michael T.</span>
+                                <div class="review-rating">★★★★☆</div>
+                            </div>
+                        </div>
+                        <span class="review-date">Sep 28, 2026</span>
+                    </div>
+                    <h4>Great sound, good price.</h4>
+                    <p>Audio profile is fantastic. Bass is punchy without being overwhelming. Had brief connection issues with my PC but the latest firmware update fixed it entirely.</p>
+                </div>
+
+                <div class="review-card fade-up" style="transition-delay: 200ms;">
+                    <div class="review-header">
+                        <div class="review-user-info">
+                            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=150&q=80" alt="Emily R" class="review-avatar">
+                            <div>
+                                <span class="review-author">Emily R.</span>
+                                <div class="review-rating">★★★★★</div>
+                            </div>
+                        </div>
+                        <span class="review-date">Sep 05, 2026</span>
+                    </div>
+                    <h4>Incredible battery life</h4>
+                    <p>I charge these maybe once a week. The ear cushions are literal pillows. Extremely comfortable to wear during an entire 8 hour work shift.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container footer-grid">
+            <div class="footer-col">
+                <h3 class="footer-logo">SonicPro</h3>
+                <p>Pure audio. No compromises.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Shop</h4>
+                <ul>
+                    <li><a href="#" class="hover-target">Headphones</a></li>
+                    <li><a href="#" class="hover-target">Earbuds</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="#" class="hover-target">Order Tracking</a></li>
+                    <li><a href="#" class="hover-target">Returns policy</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="text-center" style="margin-top: 40px; padding-top: 20px;">
+            <p>&copy; 2026 SonicPro Audio. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Main JavaScript File -->
+    <script src="script.js"></script>
+</body>
+</html>
